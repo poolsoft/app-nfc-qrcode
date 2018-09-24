@@ -20,5 +20,8 @@
 
     <string name="pass_pulseira">Passe a pulseira</string>
     <string name="pass_qrc">Leia o QR Code</string>
+    <string name="confirmation_for">Para</string>
+    <string name="no">Não</string>
+    <string name="yes">Sim</string>
 
 </resources>
