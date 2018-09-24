@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Sync Rename</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+
+    <!--ITEM MENU-->
+    <string name="menu_dados">Dados</string>
+    <string name="menu_timestamp">Mostrar Timestamp</string>
+    <string name="menu_acessar">Acessar TXT</string>
+    <string name="menu_novo">Novo TXT</string>
+    <string name="menu_personalizar">Personalizar</string>
+    <string name="menu_background">Mudar Background</string>
+    <string name="menu_botao">Cor Botões</string>
+
+</resources>

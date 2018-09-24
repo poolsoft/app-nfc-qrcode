@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:title="@string/menu_dados">
+        <menu>
+        <item
+            android:id="@+id/nav_camera"
+            android:title="@string/menu_timestamp" />
+            <!--android:icon="@drawable/ic_menu_camera"-->
+
+        <item
+            android:id="@+id/nav_gallery"
+            android:title="@string/menu_acessar" />
+            <!--android:icon="@drawable/ic_menu_gallery"-->
+
+            <item
+            android:id="@+id/nav_slideshow"
+            android:title="@string/menu_novo" />
+            <!--android:icon="@drawable/ic_menu_slideshow"-->
+
+        <item
+            android:id="@+id/nav_manage"
+            android:title="Tools" />
+            <!--android:icon="@drawable/ic_menu_manage"-->
+
+        </menu>
+    </item>
+
+    <item android:title="@string/menu_personalizar">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:title="@string/menu_background" />
+            <!--android:icon="@drawable/ic_menu_share"-->
+
+            <item
+                android:id="@+id/nav_send"
+                android:title="@string/menu_botao" />
+            <!--android:icon="@drawable/ic_menu_send"-->
+
+        </menu>
+    </item>
+
+</menu>
