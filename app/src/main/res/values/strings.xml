@@ -16,5 +16,8 @@
     <string name="menu_personalizar">Personalizar</string>
     <string name="menu_background">Mudar Background</string>
     <string name="menu_botao">Cor Botões</string>
+    <!--ITEM MENU-->
+
+    <string name="pass_pulseira">Passe a pulseira</string>
 
 </resources>
