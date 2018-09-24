@@ -5,5 +5,7 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="black">#000000</color>
+    <color name="green_button">#8ADC37</color>
+    <color name="red_button">#FF5555</color>
 
 </resources>
