@@ -19,5 +19,6 @@
     <!--ITEM MENU-->
 
     <string name="pass_pulseira">Passe a pulseira</string>
+    <string name="pass_qrc">Leia o QR Code</string>
 
 </resources>
