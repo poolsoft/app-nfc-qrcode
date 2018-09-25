@@ -20,7 +20,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 
+import com.br.syncrename.Fragments.BackgroundFragment;
+import com.br.syncrename.Fragments.BotaoFragment;
+import com.br.syncrename.Fragments.ListaFragment;
 import com.br.syncrename.Fragments.NFCFragment;
+import com.br.syncrename.Fragments.QRCodeFragment;
+import com.br.syncrename.Fragments.TimestampFragment;
 import com.br.syncrename.R;
 
 import butterknife.BindView;
@@ -36,6 +41,11 @@ public class MainActivity extends SyncActivity
 
     private Fragment fragment;
     private NFCFragment nfcFragment;
+    private QRCodeFragment qrCodeFragment;
+    private TimestampFragment timestampFragment;
+    private ListaFragment listaFragment;
+    private BackgroundFragment backgroundFragment;
+    private BotaoFragment botaoFragment;
 
 
     @Override
@@ -111,68 +121,39 @@ public class MainActivity extends SyncActivity
 
     public Fragment getFragmentBySection(int sectionNumer) {
         if (sectionNumer == R.id.nav_camera) {
-            if(nfcFragment == null){
-                nfcFragment = NFCFragment.newInstance();
+            if(timestampFragment == null){
+                timestampFragment = TimestampFragment.newInstance();
             }
 
-            return nfcFragment;
+            return timestampFragment;
 
         } else if (sectionNumer == R.id.nav_gallery) {
+            if(listaFragment == null){
+                listaFragment = ListaFragment.newInstance();
+            }
+
+            return listaFragment;
 
         } else if (sectionNumer == R.id.nav_slideshow) {
 
         } else if (sectionNumer == R.id.nav_manage) {
 
+
         } else if (sectionNumer == R.id.nav_share) {
+            if(backgroundFragment == null){
+                backgroundFragment = BackgroundFragment.newInstance();
+            }
+
+            return backgroundFragment;
 
         } else if (sectionNumer == R.id.nav_send) {
+            if(botaoFragment == null){
+                botaoFragment = BotaoFragment.newInstance();
+            }
 
+            return botaoFragment;
         }
 
-//        if (sectionNumer == SECTION_DISH) {
-//            if (dishFragment == null) {
-//                dishFragment = DishFragment.newInstance();
-//
-//            }else{
-//                dishFragment=null;
-//                dishFragment=DishFragment.newInstance();
-//            }
-//            return dishFragment;
-//        } else if (sectionNumer == SECTION_MY_ORDER) {
-//            if (myRequestFragment == null) {
-//                myRequestFragment = MyOrderFragment.newInstance();
-//                mTitleView.setText(getString(R.string.drawer_my_request));
-//                restoreActionBar();
-//                testMenu(1);
-//            }
-//            return myRequestFragment;
-//        } else if (sectionNumer == 2) {
-//            if (PreferencesHandler.isLogged()) {
-//                if (profileFragment == null) {
-//                    profileFragment = ProfileFragment.newInstance();
-//                    mTitleView.setText(getString(R.string.drawer_perfil));
-//                    restoreActionBar();
-//                    testMenu(1);
-//                }
-//                return profileFragment;
-//            } else {
-//                startActivity(new Intent(this, LoginActivity.class).putExtra("email_client", ""));
-//                return null;
-//            }
-//        } else if (sectionNumer == 3) {
-//            if (PreferencesHandler.isLogged()) {
-//                if (cardPaymentFragment == null) {
-//                    cardPaymentFragment = CardPaymentFragment.newInstance();
-//                    mTitleView.setText(getString(R.string.drawer_payment));
-//                    restoreActionBar();
-//                    testMenu(1);
-//                }
-//                return cardPaymentFragment;
-//            } else {
-//                startActivity(new Intent(this, LoginActivity.class).putExtra("email_client", ""));
-//                return null;
-//            }
-//        }
         return null;
     }
 }
