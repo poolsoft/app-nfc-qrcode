@@ -6,23 +6,23 @@
     <item android:title="@string/menu_dados">
         <menu>
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_timestamp"
             android:title="@string/menu_timestamp" />
             <!--android:icon="@drawable/ic_menu_camera"-->
 
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_acessar"
             android:title="@string/menu_acessar" />
             <!--android:icon="@drawable/ic_menu_gallery"-->
 
             <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_novo"
             android:title="@string/menu_novo" />
             <!--android:icon="@drawable/ic_menu_slideshow"-->
 
-        <item
-            android:id="@+id/nav_manage"
-            android:title="Tools" />
+        <!--<item-->
+            <!--android:id="@+id/nav_manage"-->
+            <!--android:title="Tools" />-->
             <!--android:icon="@drawable/ic_menu_manage"-->
 
         </menu>
@@ -31,12 +31,12 @@
     <item android:title="@string/menu_personalizar">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/nav_background"
                 android:title="@string/menu_background" />
             <!--android:icon="@drawable/ic_menu_share"-->
 
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_botao"
                 android:title="@string/menu_botao" />
             <!--android:icon="@drawable/ic_menu_send"-->
 

@@ -120,33 +120,30 @@ public class MainActivity extends SyncActivity
     }
 
     public Fragment getFragmentBySection(int sectionNumer) {
-        if (sectionNumer == R.id.nav_camera) {
+        if (sectionNumer == R.id.nav_timestamp) {
             if(timestampFragment == null){
                 timestampFragment = TimestampFragment.newInstance();
             }
 
             return timestampFragment;
 
-        } else if (sectionNumer == R.id.nav_gallery) {
+        } else if (sectionNumer == R.id.nav_acessar) {
             if(listaFragment == null){
                 listaFragment = ListaFragment.newInstance();
             }
 
             return listaFragment;
 
-        } else if (sectionNumer == R.id.nav_slideshow) {
+        } else if (sectionNumer == R.id.nav_novo) {
 
-        } else if (sectionNumer == R.id.nav_manage) {
-
-
-        } else if (sectionNumer == R.id.nav_share) {
+        } else if (sectionNumer == R.id.nav_background) {
             if(backgroundFragment == null){
                 backgroundFragment = BackgroundFragment.newInstance();
             }
 
             return backgroundFragment;
 
-        } else if (sectionNumer == R.id.nav_send) {
+        } else if (sectionNumer == R.id.nav_botao) {
             if(botaoFragment == null){
                 botaoFragment = BotaoFragment.newInstance();
             }
