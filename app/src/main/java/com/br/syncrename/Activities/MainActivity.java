@@ -33,6 +33,7 @@ import com.br.syncrename.Fragments.NFCFragment;
 import com.br.syncrename.Fragments.QRCodeFragment;
 import com.br.syncrename.Fragments.TimestampFragment;
 import com.br.syncrename.R;
+import com.br.syncrename.Utils.PreferenceHandler;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -78,6 +79,12 @@ public class MainActivity extends SyncActivity
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        trocarFundoCor(PreferenceHandler.getBackground());
+    }
+
+    @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -112,6 +119,7 @@ public class MainActivity extends SyncActivity
     public void trocarFundoCor(String cor){
         try{
             relativeFather.setBackgroundColor(Color.parseColor("#"+cor));
+            PreferenceHandler.saveBackground(cor);
 
         }catch (NumberFormatException e){
             Toast.makeText(this, getResources().getString(R.string.cor_erro), Toast.LENGTH_SHORT).show();
