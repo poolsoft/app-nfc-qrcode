@@ -69,7 +69,8 @@
                 android:layout_weight="8"
                 android:textSize="@dimen/text_2"
                 android:textColor="@color/black"
-                android:background="@drawable/custom_edittext"/>
+                android:background="@drawable/custom_edittext"
+                android:maxLength="6"/>
 
             <Button
                 android:id="@+id/button_hexadecimal"
