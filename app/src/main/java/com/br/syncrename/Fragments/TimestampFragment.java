@@ -11,6 +11,7 @@ import com.br.syncrename.R;
 
 import org.joda.time.DateTime;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import butterknife.BindView;
@@ -40,6 +41,7 @@ public class TimestampFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
 
         DateTime date = new DateTime();
         dateText.setText("qqqqqq");

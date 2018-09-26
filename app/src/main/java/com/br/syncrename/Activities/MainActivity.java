@@ -3,6 +3,8 @@ package com.br.syncrename.Activities;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,7 +20,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.br.syncrename.Fragments.BackgroundFragment;
 import com.br.syncrename.Fragments.BotaoFragment;
@@ -36,6 +42,10 @@ import retrofit.Retrofit;
 
 public class MainActivity extends SyncActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    @BindView(R.id.father_relative)
+    RelativeLayout relativeFather;
+
 
     private int sectionNumer = 0;
 
@@ -98,6 +108,18 @@ public class MainActivity extends SyncActivity
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void trocarFundoCor(String cor){
+        try{
+            relativeFather.setBackgroundColor(Color.parseColor("#"+cor));
+
+        }catch (NumberFormatException e){
+            Toast.makeText(this, getResources().getString(R.string.cor_erro), Toast.LENGTH_SHORT).show();
+        }catch (IllegalArgumentException e){
+            Toast.makeText(this, getResources().getString(R.string.cor_erro), Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

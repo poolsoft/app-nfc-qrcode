@@ -24,5 +24,9 @@
     <string name="no">Não</string>
     <string name="yes">Sim</string>
     <string name="back_button">Voltar</string>
+    <string name="text_arquivo">Procurar arquivo</string>
+    <string name="color_hexadecimal">Digite a cor Hexadecimal</string>
+    <string name="ok">ok</string>
+    <string name="cor_erro">Essa cor não existe</string>
 
 </resources>
