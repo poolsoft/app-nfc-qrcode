@@ -9,11 +9,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.br.syncrename.Activities.MainActivity;
 import com.br.syncrename.R;
+import com.br.syncrename.Utils.PreferenceHandler;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,6 +27,8 @@ public class BackgroundFragment extends Fragment {
     EditText editHexadecimal;
     @BindView(R.id.view_color)
     LinearLayout viewColor;
+    @BindView(R.id.button_back)
+    Button button_back;
 
     public static BackgroundFragment newInstance() {
         BackgroundFragment fragment = new BackgroundFragment();
@@ -56,6 +60,7 @@ public class BackgroundFragment extends Fragment {
     }
 
     @OnClick(R.id.button_hexadecimal) void trocarCor(){
+        button_back.setBackgroundColor(Color.parseColor("#"+ PreferenceHandler.getBotao()));
         String cor = editHexadecimal.getText().toString();
         ((MainActivity) getActivity()).trocarFundoCor(cor);
 

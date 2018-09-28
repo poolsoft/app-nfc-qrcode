@@ -11,8 +11,7 @@ public class PreferenceHandler {
     public static final String SYNC_PREFS = "syncPrefs";
 
     public static String CORBACKGROUND = "corbackground_";
-
-
+    public static String CORBOTAO = "corbotao_";
 
     // Shared Preferences
     public static SharedPreferences mSharedPreferences;
@@ -29,6 +28,16 @@ public class PreferenceHandler {
 
     public static String getBackground(){
         return mSharedPreferences.getString(CORBACKGROUND,"9B9B9B");
+    }
+
+    public static void saveBotao(String cor){
+        SharedPreferences.Editor e = mSharedPreferences.edit();
+        e.putString(CORBOTAO,cor);
+        e.apply();
+    }
+
+    public static String getBotao(){
+        return mSharedPreferences.getString(CORBOTAO,"F5A623");
     }
 }
 

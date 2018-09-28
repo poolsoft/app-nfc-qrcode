@@ -28,5 +28,6 @@
     <string name="color_hexadecimal">Digite a cor Hexadecimal</string>
     <string name="ok">ok</string>
     <string name="cor_erro">Essa cor não existe</string>
+    <string name="cor_sucesso">Cor alterada!</string>
 
 </resources>
