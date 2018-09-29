@@ -34,8 +34,14 @@ import com.br.syncrename.Fragments.ListaFragment;
 import com.br.syncrename.Fragments.NFCFragment;
 import com.br.syncrename.Fragments.QRCodeFragment;
 import com.br.syncrename.Fragments.TimestampFragment;
+import com.br.syncrename.Models.Arquivo;
 import com.br.syncrename.R;
+import com.br.syncrename.Utils.ArquivoTxt;
 import com.br.syncrename.Utils.PreferenceHandler;
+import com.br.syncrename.Utils.ServerHandler;
+import com.fasterxml.jackson.core.JsonProcessingException;
+
+import org.joda.time.DateTime;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -189,5 +195,19 @@ public class MainActivity extends SyncActivity
     public void hideKeyboard(){
         InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+    }
+
+    public void criarNovoArquivo(String nome){
+
+        try {
+            Arquivo arquivo = new Arquivo();
+            arquivo.setNome(nome);
+            arquivo.setData(DateTime.now());
+
+            String novoArquivo = ServerHandler.getJsonConverter().writeValueAsString(arquivo);
+            ArquivoTxt.gravarArquivo(this, novoArquivo, getResources().getString(R.string.file_name));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
     }
 }

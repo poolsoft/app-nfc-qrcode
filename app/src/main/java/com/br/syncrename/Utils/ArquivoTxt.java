@@ -17,15 +17,15 @@ import java.io.InputStreamReader;
 public class ArquivoTxt {
 
     // caminho da pasta
-    public String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/sync_rename";
+    public static String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/sync_rename";
 
-    public void criarPasta(){
+    public static void criarPasta(){
         // criar pasta
         File dir = new File(path);
         dir.mkdirs();
     }
 
-    public void gravarArquivo (Context context, String texto, String nome)
+    public static void gravarArquivo (Context context, String texto, String nome)
     {
         //Criar arquivo
         File file = new File (path + "/"+nome+".txt");
@@ -36,7 +36,7 @@ public class ArquivoTxt {
         Save (file, saveText);
     }
 
-    public String lerArquivo (String nome)
+    public static String lerArquivo (String nome)
     {
         File file = new File (path + "/"+nome+".txt");
         String [] loadText = Load(file);

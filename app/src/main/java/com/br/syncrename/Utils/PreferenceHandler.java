@@ -12,6 +12,7 @@ public class PreferenceHandler {
 
     public static String CORBACKGROUND = "corbackground_";
     public static String CORBOTAO = "corbotao_";
+    public static String CRIARTXT = "criar_txt_";
 
     // Shared Preferences
     public static SharedPreferences mSharedPreferences;
@@ -39,5 +40,6 @@ public class PreferenceHandler {
     public static String getBotao(){
         return mSharedPreferences.getString(CORBOTAO,"F5A623");
     }
+
 }
 

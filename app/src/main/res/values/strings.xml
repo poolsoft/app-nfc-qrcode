@@ -30,5 +30,6 @@
     <string name="cor_erro">Essa cor não existe</string>
     <string name="cor_sucesso">Cor alterada!</string>
     <string name="file_saved">Cadastrado realizado</string>
+    <string name="file_name">files_sync_create</string>
 
 </resources>
