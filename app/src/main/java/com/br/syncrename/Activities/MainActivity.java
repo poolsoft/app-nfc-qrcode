@@ -24,6 +24,7 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -65,7 +66,7 @@ public class MainActivity extends SyncActivity
     private ListaFragment listaFragment;
     private BackgroundFragment backgroundFragment;
     private BotaoFragment botaoFragment;
-
+    private EditText nomeArquivo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,6 +174,7 @@ public class MainActivity extends SyncActivity
             return listaFragment;
 
         } else if (sectionNumer == R.id.nav_novo) {
+            modalNovoArquivo();
 
         } else if (sectionNumer == R.id.nav_background) {
             if(backgroundFragment == null){
@@ -195,6 +197,27 @@ public class MainActivity extends SyncActivity
     public void hideKeyboard(){
         InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+    }
+
+    public void modalNovoArquivo(){
+        final View inflator = getLayoutInflater().inflate(R.layout.modal_novo, null);
+
+        nomeArquivo = (EditText)inflator.findViewById(R.id.code_delivered);
+
+        android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(this);
+        alertDialog.setView(inflator);
+        alertDialog.setPositiveButton(getString(R.string.file_create), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                criarNovoArquivo(nomeArquivo.getText().toString());
+            }
+        });
+        alertDialog.setNegativeButton(getString(R.string.file_cancel), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        final android.app.AlertDialog dialog = alertDialog.create();
+        dialog.show();
     }
 
     public void criarNovoArquivo(String nome){

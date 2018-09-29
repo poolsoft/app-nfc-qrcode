@@ -31,5 +31,9 @@
     <string name="cor_sucesso">Cor alterada!</string>
     <string name="file_saved">Cadastrado realizado</string>
     <string name="file_name">files_sync_create</string>
+    <string name="file_create">Criar</string>
+    <string name="file_cancel">Cancelar</string>
+    <string name="file_modal_text">Digite o nome do novo arquivo TXT:</string>
+    <string name="file">arquivo</string>
 
 </resources>
