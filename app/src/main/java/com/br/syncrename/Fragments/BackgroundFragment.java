@@ -46,6 +46,8 @@ public class BackgroundFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
+        button_back.setBackgroundColor(Color.parseColor("#"+PreferenceHandler.getBotao()));
+        button_back.setText("");
         editHexadecimal.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {trocarCorView(); }
@@ -63,7 +65,7 @@ public class BackgroundFragment extends Fragment {
         button_back.setBackgroundColor(Color.parseColor("#"+ PreferenceHandler.getBotao()));
         String cor = editHexadecimal.getText().toString();
         ((MainActivity) getActivity()).trocarFundoCor(cor);
-
+        ((MainActivity) getContext()).hideKeyboard();
 
     }
 

@@ -1,5 +1,6 @@
 package com.br.syncrename.Fragments;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -48,7 +50,7 @@ public class BotaoFragment extends Fragment {
         super.onResume();
 
         button_back.setBackgroundColor(Color.parseColor("#"+PreferenceHandler.getBotao()));
-
+        button_back.setText("");
         editHexadecimal.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {trocarCorView(); }
@@ -63,7 +65,7 @@ public class BotaoFragment extends Fragment {
     }
 
     @OnClick(R.id.button_hexadecimal) void trocarCor(){
-        editHexadecimal.setFocusable(false);
+        ((MainActivity) getContext()).hideKeyboard();
         String cor = editHexadecimal.getText().toString();
         try{
             button_back.setBackgroundColor(Color.parseColor("#"+cor));
@@ -85,5 +87,6 @@ public class BotaoFragment extends Fragment {
             Log.e("COR","Cor não existe");
         }
     }
+
 
 }
