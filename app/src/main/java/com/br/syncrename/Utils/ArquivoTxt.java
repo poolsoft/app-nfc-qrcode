@@ -29,7 +29,7 @@ public class ArquivoTxt {
     {
         //Criar arquivo
         File file = new File (path + "/"+nome+".txt");
-        String textoTotal = String.valueOf(texto) + lerArquivo(nome);
+        String textoTotal = String.valueOf(texto) + lerArquivo(nome) ;
         String [] saveText = textoTotal.split(System.getProperty("line.separator"));
 
         Toast.makeText(context, context.getResources().getString(R.string.file_saved), Toast.LENGTH_LONG).show();
@@ -42,6 +42,7 @@ public class ArquivoTxt {
         String [] loadText = Load(file);
         String finalString = "";
 
+        if(loadText != null)
         for (int i = 0; i < loadText.length; i++)
         {
             finalString += loadText[i] + System.getProperty("line.separator");
@@ -92,40 +93,44 @@ public class ArquivoTxt {
             fis = new FileInputStream(file);
         }
         catch (FileNotFoundException e) {e.printStackTrace();}
-        InputStreamReader isr = new InputStreamReader(fis);
-        BufferedReader br = new BufferedReader(isr);
+        if(fis != null){
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader br = new BufferedReader(isr);
 
-        String test;
-        int anzahl=0;
-        try
-        {
-            while ((test=br.readLine()) != null)
+            String test;
+            int anzahl=0;
+            try
             {
-                anzahl++;
+                while ((test=br.readLine()) != null)
+                {
+                    anzahl++;
+                }
             }
-        }
-        catch (IOException e) {e.printStackTrace();}
+            catch (IOException e) {e.printStackTrace();}
 
-        try
-        {
-            fis.getChannel().position(0);
-        }
-        catch (IOException e) {e.printStackTrace();}
-
-        String[] array = new String[anzahl];
-
-        String line;
-        int i = 0;
-        try
-        {
-            while((line=br.readLine())!=null)
+            try
             {
-                array[i] = line;
-                i++;
+                fis.getChannel().position(0);
             }
+            catch (IOException e) {e.printStackTrace();}
+
+            String[] array = new String[anzahl];
+
+            String line;
+            int i = 0;
+            try
+            {
+                while((line=br.readLine())!=null)
+                {
+                    array[i] = line;
+                    i++;
+                }
+            }
+            catch (IOException e) {e.printStackTrace();}
+            return array;
+
         }
-        catch (IOException e) {e.printStackTrace();}
-        return array;
+        return null;
     }
 
 }

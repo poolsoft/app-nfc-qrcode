@@ -200,6 +200,8 @@ public class MainActivity extends SyncActivity
     }
 
     public void modalNovoArquivo(){
+        ArquivoTxt.criarPasta();
+
         final View inflator = getLayoutInflater().inflate(R.layout.modal_novo, null);
 
         nomeArquivo = (EditText)inflator.findViewById(R.id.code_delivered);
