@@ -3,6 +3,7 @@ package com.br.syncrename.Fragments;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -26,7 +27,7 @@ public class BackgroundFragment extends Fragment {
     @BindView(R.id.edit_hexadecimal)
     EditText editHexadecimal;
     @BindView(R.id.view_color)
-    LinearLayout viewColor;
+    CardView viewColor;
     @BindView(R.id.button_back)
     Button button_back;
 
@@ -47,7 +48,7 @@ public class BackgroundFragment extends Fragment {
         super.onResume();
 
         button_back.setBackgroundColor(Color.parseColor("#"+PreferenceHandler.getBotao()));
-        button_back.setText("");
+        editHexadecimal.getText().clear();
         editHexadecimal.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {trocarCorView(); }
@@ -71,11 +72,16 @@ public class BackgroundFragment extends Fragment {
 
     public void trocarCorView(){
         try{
-            viewColor.setBackgroundColor(Color.parseColor("#"+editHexadecimal.getText().toString()));
+            if(editHexadecimal.getText().toString().length() != 0)
+                viewColor.setCardBackgroundColor(Color.parseColor("#"+editHexadecimal.getText().toString()));
+            else
+                viewColor.setCardBackgroundColor(Color.parseColor("#"+PreferenceHandler.getBotao()));
         }catch( Exception e ){
             Log.e("COR","Cor não existe");
         }
     }
 
-
+    @OnClick(R.id.button_back) void backPressed(){
+        ((MainActivity) getActivity()).onBackPressed();
+    }
 }

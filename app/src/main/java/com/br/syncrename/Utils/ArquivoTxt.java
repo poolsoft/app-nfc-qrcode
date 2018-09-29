@@ -84,7 +84,6 @@ public class ArquivoTxt {
         }
     }
 
-
     public static String[] Load(File file)
     {
         FileInputStream fis = null;
