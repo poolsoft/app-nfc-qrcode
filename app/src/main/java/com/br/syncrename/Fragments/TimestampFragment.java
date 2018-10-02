@@ -31,8 +31,8 @@ public class TimestampFragment extends Fragment {
     TextView timestamp;
     @BindView(R.id.text_date)
     TextView dateText;
-//    @BindView(R.id.button_back)
-//    Button button_back;
+    @BindView(R.id.button_back)
+    Button button_back;
 
 
     public static TimestampFragment newInstance() {
@@ -50,7 +50,7 @@ public class TimestampFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-//        button_back.setBackgroundColor(Color.parseColor("#"+ PreferenceHandler.getBotao()));
+        button_back.setBackgroundColor(Color.parseColor("#"+ PreferenceHandler.getBotao()));
 
         DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
         String date1 = df.format(Calendar.getInstance().getTime());
@@ -60,7 +60,7 @@ public class TimestampFragment extends Fragment {
 
     }
 
-//    @OnClick(R.id.button_back) void backPressed(){
-//        ((MainActivity) getActivity()).onBackPressed();
-//    }
+    @OnClick(R.id.button_back) void backPressed(){
+        ((MainActivity) getActivity()).onBackPressed();
+    }
 }
