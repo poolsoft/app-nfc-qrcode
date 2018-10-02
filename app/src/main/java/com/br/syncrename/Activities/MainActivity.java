@@ -189,6 +189,12 @@ public class MainActivity extends SyncActivity
             }
 
             return botaoFragment;
+        } else if( sectionNumer == R.id.nav_qrc){
+            if(qrCodeFragment == null){
+                qrCodeFragment = QRCodeFragment.newInstance();
+            }
+
+            return qrCodeFragment;
         }
 
         return null;

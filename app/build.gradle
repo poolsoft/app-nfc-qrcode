@@ -70,6 +70,9 @@ dependencies {
     //Snackbar
     implementation 'com.nispok:snackbar:2.11.0'
 
+    //Qr-code
+    implementation 'com.github.blikoon:QRCodeScanner:0.1.2'
+
     //test
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

@@ -43,4 +43,12 @@
         </menu>
     </item>
 
+    <item android:title="@string/menu_read">
+        <menu>
+            <item
+                android:id="@+id/nav_qrc"
+                android:title="@string/menu_qrcode"/>
+        </menu>
+    </item>
+
 </menu>

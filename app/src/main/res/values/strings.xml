@@ -16,6 +16,8 @@
     <string name="menu_personalizar">Personalizar</string>
     <string name="menu_background">Mudar Background</string>
     <string name="menu_botao">Cor Botões</string>
+    <string name="menu_read">Leitura</string>
+    <string name="menu_qrcode">QR Code</string>
     <!--ITEM MENU-->
 
     <string name="pass_pulseira">Passe a pulseira</string>
