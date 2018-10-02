@@ -7,7 +7,6 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-
     <!--ITEM MENU-->
     <string name="menu_dados">Dados</string>
     <string name="menu_timestamp">Mostrar Timestamp</string>
@@ -37,5 +36,8 @@
     <string name="file_cancel">Cancelar</string>
     <string name="file_modal_text">Digite o nome do novo arquivo TXT:</string>
     <string name="file">arquivo</string>
+    <string name="qrc_erro">Erro Qr Code</string>
+    <string name="qrc_erro_msg">Não foi possível ler o Qr code</string>
+    <string name="not_file">Você precisa de criar um arquivo antes de ler</string>
 
 </resources>

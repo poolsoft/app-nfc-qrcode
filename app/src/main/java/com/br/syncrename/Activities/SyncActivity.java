@@ -19,6 +19,7 @@ public class SyncActivity extends AppCompatActivity {
 
     private static final int REQUEST = 2424;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
