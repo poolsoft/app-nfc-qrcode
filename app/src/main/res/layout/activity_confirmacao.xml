@@ -7,16 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".Activities.ConfirmacaoActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        app:popupTheme="@style/Theme.AppCompat.Light.DarkActionBar"
-        app:theme="@style/AppTheme.Base.ActionBar" />
-
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,60 +30,62 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:id="@+id/text_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_2"
+            android:text="Wed sep 19 15:56:37 GMT-0300 2018"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/text_timestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_2"
+            android:text="1537383397"
+            android:gravity="center"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_2"
+            android:text="@string/confirmation_for"
+            android:gravity="center"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/text_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_2"
+            android:text="04FE5AAA624E80"
+            android:gravity="center"
+            android:layout_marginTop="10dp"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="40dp"
         android:layout_alignParentBottom="true">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_margin="10dp"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/text_data"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_2"
-                android:text="Wed sep 19 15:56:37 GMT-0300 2018"
-                android:gravity="center"/>
-
-           <TextView
-               android:id="@+id/text_timestamp"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:textColor="@color/black"
-               android:textSize="@dimen/text_2"
-               android:text="1537383397"
-               android:gravity="center"
-               android:layout_marginTop="10dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_2"
-                android:text="@string/confirmation_for"
-                android:gravity="center"
-                android:layout_marginTop="10dp"/>
-
-            <TextView
-                android:id="@+id/text_tag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_2"
-                android:text="04FE5AAA624E80"
-                android:gravity="center"
-                android:layout_marginTop="10dp"/>
-
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

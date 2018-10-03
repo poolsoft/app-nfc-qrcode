@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Environment;
 import android.widget.Toast;
 
+import com.br.syncrename.Models.Arquivo;
 import com.br.syncrename.R;
 
 import java.io.BufferedReader;
@@ -13,6 +14,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ArquivoTxt {
 
@@ -29,7 +32,7 @@ public class ArquivoTxt {
     {
         //Criar arquivo
         File file = new File (path + "/"+nome+".txt");
-        String textoTotal = String.valueOf(texto) + lerArquivo(nome) ;
+        String textoTotal = String.valueOf(texto)+"\n" + lerArquivo(nome) ;
         String [] saveText = textoTotal.split(System.getProperty("line.separator"));
 
         Toast.makeText(context, context.getResources().getString(R.string.file_saved), Toast.LENGTH_LONG).show();
@@ -49,6 +52,29 @@ public class ArquivoTxt {
         }
 
         return finalString;
+    }
+
+    public static String [] lerArquivoArray (String nome)
+    {
+        File file = new File (path + "/"+nome+".txt");
+        String [] loadText = Load(file);
+
+        return loadText;
+    }
+
+    public static List<Arquivo> listaArquivos(String nome){
+        String [] todosArquivos = lerArquivoArray(nome);
+        List<Arquivo> result = new ArrayList<>();
+
+        for (String arquivo: todosArquivos) {
+            try {
+                result.add(ServerHandler.getJsonConverter().readValue(arquivo, Arquivo.class));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return result;
+
     }
 
     public static void Save(File file, String[] data)
