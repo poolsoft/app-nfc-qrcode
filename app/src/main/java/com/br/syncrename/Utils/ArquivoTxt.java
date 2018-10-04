@@ -67,27 +67,26 @@ public class ArquivoTxt {
         String [] todosArquivos = lerArquivoArray(nome);
         List<Arquivo> result = new ArrayList<>();
 
-        for (String arquivo: todosArquivos) {
-            try {
-                result.add(ServerHandler.getJsonConverter().readValue(arquivo, Arquivo.class));
-            } catch (IOException e) {
-                e.printStackTrace();
+        if(todosArquivos.length > 0){
+            for (String arquivo: todosArquivos) {
+                try {
+                    result.add(ServerHandler.getJsonConverter().readValue(arquivo, Arquivo.class));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
+
         return result;
 
     }
 
-    public static List<Tags> listaTags(String nome){
+    public static List<String> listaTags(String nome){
         String [] todosArquivos = lerArquivoArray(nome);
-        List<Tags> result = new ArrayList<>();
+        List<String> result = new ArrayList<>();
 
         for (String arquivo: todosArquivos) {
-            try {
-                result.add(ServerHandler.getJsonConverter().readValue(arquivo, Tags.class));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            result.add(arquivo);
         }
         return result;
 

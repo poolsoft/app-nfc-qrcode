@@ -120,11 +120,11 @@ public class ConfirmacaoActivity extends SyncActivity {
     }
 
     @OnClick(R.id.button_sim) void confirmaTag(){
-        Tags tags = new Tags();
-        tags.setCode(code);
-        tags.setTimeStamp(millius);
+//        Tags tags = new Tags();
+//        tags.setCode(code);
+//        tags.setTimeStamp(millius);
         try {
-            String novoTag = ServerHandler.getJsonConverter().writeValueAsString(tags);
+            String novoTag = ServerHandler.getJsonConverter().writeValueAsString(code+";"+millius);
             ArquivoTxt.gravarArquivo(this, novoTag, arquivoAtual);
         } catch (JsonProcessingException e) {
             e.printStackTrace();

@@ -15,10 +15,10 @@ import butterknife.ButterKnife;
 
 public class DetalheAdapter extends RecyclerView.Adapter<DetalheAdapter.ViewHolder>{
 
-    private List<Tags> mList;
+    private List<String> mList;
     private Activity context;
 
-    public DetalheAdapter(Activity context, List<Tags> mList){
+    public DetalheAdapter(Activity context, List<String> mList){
         this.mList=mList;
         this.context= context;
     }
@@ -32,9 +32,9 @@ public class DetalheAdapter extends RecyclerView.Adapter<DetalheAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final Tags tag = mList.get(position);
-        holder.textTag.setText(tag.getCode());
-        holder.textTimestamp.setText(tag.getTimeStamp());
+        final String[] texto = mList.get(position).split(";");
+        holder.textTag.setText(texto[0].replace("\"",""));
+        holder.textTimestamp.setText(texto[1].replace("\"",""));
     }
 
     @Override
@@ -42,7 +42,7 @@ public class DetalheAdapter extends RecyclerView.Adapter<DetalheAdapter.ViewHold
         return mList.size();
     }
 
-    public void setList(List<Tags> mList){
+    public void setList(List<String> mList){
         this.mList = mList;
         notifyDataSetChanged();
     }
