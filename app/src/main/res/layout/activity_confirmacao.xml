@@ -28,55 +28,59 @@
 
     </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginBottom="30dp"
+        android:paddingBottom="50dp"
         android:layout_marginRight="30dp"
         android:layout_marginLeft="30dp"
         android:layout_centerInParent="true">
 
         <TextView
             android:id="@+id/text_data"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="@dimen/text_2"
             android:text="Wed sep 19 15:56:37 GMT-0300 2018"
-            android:gravity="center"/>
+            android:layout_centerHorizontal="true"/>
 
         <TextView
             android:id="@+id/text_timestamp"
+            android:layout_below="@+id/text_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="@dimen/text_2"
             android:text="1537383397"
-            android:gravity="center"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"/>
 
         <TextView
+            android:id="@+id/para"
+            android:layout_below="@+id/text_timestamp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="@dimen/text_2"
             android:text="@string/confirmation_for"
-            android:gravity="center"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"/>
 
         <TextView
             android:id="@+id/text_tag"
+            android:layout_below="@+id/para"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="@dimen/text_2"
             android:text="04FE5AAA624E80"
-            android:gravity="center"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"/>
 
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
