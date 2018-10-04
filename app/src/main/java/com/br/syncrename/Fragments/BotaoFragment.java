@@ -71,7 +71,7 @@ public class BotaoFragment extends Fragment {
         try{
             button_back.setBackgroundColor(Color.parseColor("#"+cor));
             PreferenceHandler.saveBotao(cor);
-            Toast.makeText(getContext(), getResources().getString(R.string.cor_sucesso), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), getResources().getString(R.string.cor_sucesso), Toast.LENGTH_SHORT).show();
 
         }catch (NumberFormatException e){
             Toast.makeText(getContext(), getResources().getString(R.string.cor_erro), Toast.LENGTH_SHORT).show();

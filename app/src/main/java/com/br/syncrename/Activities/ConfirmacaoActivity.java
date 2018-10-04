@@ -119,7 +119,7 @@ public class ConfirmacaoActivity extends SyncActivity {
             e.printStackTrace();
         }
 
-
+        voltarMain();
     }
 
 

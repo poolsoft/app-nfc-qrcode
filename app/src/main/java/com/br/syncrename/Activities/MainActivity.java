@@ -96,6 +96,7 @@ public class MainActivity extends SyncActivity
     protected void onResume() {
         super.onResume();
         trocarFundoCor(PreferenceHandler.getBackground());
+        inicializaPrincipal(R.id.nav_qrc);
     }
 
     @Override
@@ -134,7 +135,7 @@ public class MainActivity extends SyncActivity
         try{
             relativeFather.setBackgroundColor(Color.parseColor("#"+cor));
             PreferenceHandler.saveBackground(cor);
-            Toast.makeText(this, getResources().getString(R.string.cor_sucesso), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, getResources().getString(R.string.cor_sucesso), Toast.LENGTH_SHORT).show();
 
         }catch (NumberFormatException e){
             Toast.makeText(this, getResources().getString(R.string.cor_erro), Toast.LENGTH_SHORT).show();
@@ -147,7 +148,6 @@ public class MainActivity extends SyncActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
         sectionNumer = item.getItemId();
         if(getFragmentBySection(sectionNumer) != null) {
             fragment = getFragmentBySection(sectionNumer);
@@ -161,6 +161,21 @@ public class MainActivity extends SyncActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void inicializaPrincipal(int item){
+        sectionNumer = item;
+        if(getFragmentBySection(sectionNumer) != null) {
+            fragment = getFragmentBySection(sectionNumer);
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.container, fragment, "MAIN_FRAGMENT_" + sectionNumer)
+                    .addToBackStack("MAIN_FRAGMENT_" + sectionNumer)
+                    .commit();
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
     }
 
     public Fragment getFragmentBySection(int sectionNumer) {

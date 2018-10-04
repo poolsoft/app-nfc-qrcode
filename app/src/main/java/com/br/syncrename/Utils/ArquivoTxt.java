@@ -5,6 +5,7 @@ import android.os.Environment;
 import android.widget.Toast;
 
 import com.br.syncrename.Models.Arquivo;
+import com.br.syncrename.Models.Tags;
 import com.br.syncrename.R;
 
 import java.io.BufferedReader;
@@ -69,6 +70,21 @@ public class ArquivoTxt {
         for (String arquivo: todosArquivos) {
             try {
                 result.add(ServerHandler.getJsonConverter().readValue(arquivo, Arquivo.class));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return result;
+
+    }
+
+    public static List<Tags> listaTags(String nome){
+        String [] todosArquivos = lerArquivoArray(nome);
+        List<Tags> result = new ArrayList<>();
+
+        for (String arquivo: todosArquivos) {
+            try {
+                result.add(ServerHandler.getJsonConverter().readValue(arquivo, Tags.class));
             } catch (IOException e) {
                 e.printStackTrace();
             }
