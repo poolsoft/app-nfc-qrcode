@@ -8,5 +8,6 @@
 
     <dimen name="text_1">25dp</dimen>
     <dimen name="text_2">16dp</dimen>
+    <dimen name="text_3">10dp</dimen>
 
 </resources>

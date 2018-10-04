@@ -3,6 +3,7 @@ package com.br.syncrename.Adapters;
 import android.app.Activity;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,7 +54,7 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.ViewHolder> 
         holder.textDate.setText(df.format(Calendar.getInstance().getTime()));
         holder.textNome.setText(arquivo.getNome());
         holder.textTime.setText(data.getHourOfDay()+":"+data.getMinuteOfHour());
-        holder.fatherRelative.setBackgroundColor(Color.parseColor("#"+PreferenceHandler.getBotao()));
+        holder.cardView.setCardBackgroundColor(Color.parseColor("#"+PreferenceHandler.getBotao()));
 
         holder.fatherRelative.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +84,8 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.ViewHolder> 
         TextView textDate;
         @BindView(R.id.text_time)
         TextView textTime;
+        @BindView(R.id.card_view)
+        CardView cardView;
 
         public ViewHolder(View itemView) {
             super(itemView);
