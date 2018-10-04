@@ -31,6 +31,7 @@ import android.widget.Toast;
 
 import com.br.syncrename.Fragments.BackgroundFragment;
 import com.br.syncrename.Fragments.BotaoFragment;
+import com.br.syncrename.Fragments.DetalheFragment;
 import com.br.syncrename.Fragments.ListaFragment;
 import com.br.syncrename.Fragments.NFCFragment;
 import com.br.syncrename.Fragments.QRCodeFragment;
@@ -66,7 +67,11 @@ public class MainActivity extends SyncActivity
     private ListaFragment listaFragment;
     private BackgroundFragment backgroundFragment;
     private BotaoFragment botaoFragment;
+    private DetalheFragment detalheFragment;
+
     private EditText nomeArquivo;
+    private String nomeDetahles;
+    private int DETALHES = 2540;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -195,6 +200,12 @@ public class MainActivity extends SyncActivity
             }
 
             return qrCodeFragment;
+        } else if( sectionNumer == DETALHES ){
+            if( detalheFragment == null ){
+                detalheFragment = DetalheFragment.newInstance();
+            }
+
+            return detalheFragment;
         }
 
         return null;
@@ -240,5 +251,20 @@ public class MainActivity extends SyncActivity
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
+    }
+
+    public void chamaDetalhes(String nome){
+        nomeDetahles = nome;
+
+        fragment = getFragmentBySection(DETALHES);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.container, fragment, "MAIN_FRAGMENT_" + sectionNumer)
+                .addToBackStack("MAIN_FRAGMENT_" + sectionNumer)
+                .commit();
+    }
+
+    public String getNomeDetahles() {
+        return nomeDetahles;
     }
 }

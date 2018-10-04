@@ -1,6 +1,7 @@
 package com.br.syncrename.Adapters;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,8 +10,10 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.br.syncrename.Activities.MainActivity;
 import com.br.syncrename.Models.Arquivo;
 import com.br.syncrename.R;
+import com.br.syncrename.Utils.PreferenceHandler;
 
 import org.joda.time.DateTime;
 
@@ -42,16 +45,22 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Arquivo arquivo = mList.get(position);
+        final Arquivo arquivo = mList.get(position);
 
         DateTime data = arquivo.getData();
 
         DateFormat df = new SimpleDateFormat("dd/MM/yy");
         holder.textDate.setText(df.format(Calendar.getInstance().getTime()));
-
-
         holder.textNome.setText(arquivo.getNome());
         holder.textTime.setText(data.getHourOfDay()+":"+data.getMinuteOfHour());
+        holder.fatherRelative.setBackgroundColor(Color.parseColor("#"+PreferenceHandler.getBotao()));
+
+        holder.fatherRelative.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) context).chamaDetalhes(arquivo.getNome());
+            }
+        });
     }
 
     @Override
