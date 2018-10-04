@@ -14,7 +14,9 @@ import com.br.syncrename.R;
 
 import org.joda.time.DateTime;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -42,13 +44,14 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Arquivo arquivo = mList.get(position);
 
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         DateTime data = arquivo.getData();
-        formato.applyPattern("dd-MM-yyyy");
-        holder.textDate.setText(formato.format(data).replace("-","/"));
+
+        DateFormat df = new SimpleDateFormat("dd/MM/yy");
+        holder.textDate.setText(df.format(Calendar.getInstance().getTime()));
+
 
         holder.textNome.setText(arquivo.getNome());
-        holder.textTime.setText(data.getHourOfDay()+":"+data.getMillisOfDay());
+        holder.textTime.setText(data.getHourOfDay()+":"+data.getMinuteOfHour());
     }
 
     @Override
