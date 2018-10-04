@@ -91,6 +91,17 @@ public class ConfirmacaoActivity extends SyncActivity {
             }
         } catch (JSONException e) {
             e.printStackTrace();
+            try{
+                JSONObject jsonDefault = new JSONObject(code);
+                if(jsonDefault.has("qrcode")){
+                    jsonDefault = jsonDefault.getJSONObject("qrcode");
+                    if(jsonDefault.has("Id")){
+                        code = jsonDefault.getString("Id");
+                    }
+                }
+            }catch (Exception ex){
+                ex.printStackTrace();
+            }
         }
 
     }
