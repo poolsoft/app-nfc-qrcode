@@ -32,7 +32,7 @@ public class BotaoFragment extends Fragment {
     @BindView(R.id.view_color)
     CardView viewColor;
     @BindView(R.id.button_back)
-    Button button_back;
+    CardView button_back;
 
     public static BotaoFragment newInstance() {
         BotaoFragment fragment = new BotaoFragment();
@@ -50,7 +50,7 @@ public class BotaoFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        button_back.setBackgroundColor(Color.parseColor("#"+PreferenceHandler.getBotao()));
+        button_back.setCardBackgroundColor(Color.parseColor("#"+PreferenceHandler.getBotao()));
         editHexadecimal.getText().clear();
         editHexadecimal.addTextChangedListener(new TextWatcher() {
             @Override

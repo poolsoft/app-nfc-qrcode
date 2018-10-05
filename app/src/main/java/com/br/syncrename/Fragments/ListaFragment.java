@@ -3,6 +3,7 @@ package com.br.syncrename.Fragments;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -29,7 +30,7 @@ public class ListaFragment extends Fragment {
     @BindView(R.id.lista)
     RecyclerView Lista;
     @BindView(R.id.button_back)
-    Button button_back;
+    CardView button_back;
 
     private ListaAdapter listaAdapter;
 
@@ -50,7 +51,7 @@ public class ListaFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        button_back.setBackgroundColor(Color.parseColor("#"+ PreferenceHandler.getBotao()));
+        button_back.setCardBackgroundColor(Color.parseColor("#"+ PreferenceHandler.getBotao()));
         listaAdapter = new ListaAdapter(getActivity(), ArquivoTxt.listaArquivos(getResources().getString(R.string.file_name)));
 
         Lista.setHasFixedSize(true);

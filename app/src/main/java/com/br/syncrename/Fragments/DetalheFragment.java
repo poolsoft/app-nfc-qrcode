@@ -3,6 +3,7 @@ package com.br.syncrename.Fragments;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -27,7 +28,7 @@ public class DetalheFragment extends Fragment {
     @BindView(R.id.lista)
     RecyclerView Lista;
     @BindView(R.id.button_back)
-    Button button_back;
+    CardView button_back;
 
     private DetalheAdapter detalheAdapter;
 
@@ -48,7 +49,7 @@ public class DetalheFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        button_back.setBackgroundColor(Color.parseColor("#"+ PreferenceHandler.getBotao()));
+        button_back.setCardBackgroundColor(Color.parseColor("#"+ PreferenceHandler.getBotao()));
         detalheAdapter = new DetalheAdapter(getActivity(), ArquivoTxt.listaTags(nomeArquivo));
 
         Lista.setHasFixedSize(true);
