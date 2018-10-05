@@ -2,6 +2,7 @@ package com.br.syncrename.Fragments;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class TimestampFragment extends Fragment {
+public class TimestampFragment extends Fragment  {
 
     @BindView(R.id.text_timestamp)
     TextView timestamp;
@@ -33,7 +34,7 @@ public class TimestampFragment extends Fragment {
     TextView dateText;
     @BindView(R.id.button_back)
     Button button_back;
-
+    private final static int INTERVAL = 1000 * 60 * 2; //2 minutes
 
     public static TimestampFragment newInstance() {
         TimestampFragment fragment = new TimestampFragment();
@@ -52,15 +53,29 @@ public class TimestampFragment extends Fragment {
         super.onResume();
         button_back.setBackgroundColor(Color.parseColor("#"+ PreferenceHandler.getBotao()));
 
+        threadTime();
+    }
+
+    @OnClick(R.id.button_back) void backPressed(){
+        ((MainActivity) getActivity()).onBackPressed();
+    }
+
+    public void threadTime(){
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                trocarValores();
+                handler.postDelayed(this, 1000);
+            }
+        }, 1000);
+    }
+
+
+    public void trocarValores(){
         DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
         String date1 = df.format(Calendar.getInstance().getTime());
 
         dateText.setText(date1);
         timestamp.setText(String.valueOf(df.getCalendar().getTimeInMillis()));
-
-    }
-
-    @OnClick(R.id.button_back) void backPressed(){
-        ((MainActivity) getActivity()).onBackPressed();
     }
 }
