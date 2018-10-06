@@ -17,7 +17,9 @@
         <activity
             android:name=".Activities.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,7 +30,8 @@
         <activity
             android:name=".Activities.ConfirmacaoActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.Base">
+            android:theme="@style/AppTheme.Base"
+            android:screenOrientation="portrait">
         </activity>
 
     </application>

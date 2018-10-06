@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="25dp"
         android:orientation="vertical"
-        android:paddingTop="100dp">
+        android:paddingTop="50dp">
 
         <TextView
             android:id="@+id/text_hexadecimal"
@@ -69,7 +69,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
-        app:cardCornerRadius="10dp">
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp">
 
         <TextView
             android:layout_width="match_parent"
