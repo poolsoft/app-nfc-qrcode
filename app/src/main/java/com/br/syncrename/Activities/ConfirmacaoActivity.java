@@ -20,8 +20,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -41,6 +47,9 @@ public class ConfirmacaoActivity extends SyncActivity {
     private String date1;
     private String millius;
     private String code;
+    // TODO : ALETERAR A FUNCÇÃO revomeEncapsulamento()
+    private final Pattern PATTERN = Pattern
+            .compile("XPTO.*XPTO");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +96,11 @@ public class ConfirmacaoActivity extends SyncActivity {
                 if(jsonDefault.has("Id")){
                     int codeint = jsonDefault.getInt("Id");
                     code = String.valueOf(codeint);
+                }else {
+                    code = lerEncapsulamento(code);
                 }
+            }else{
+                code = lerEncapsulamento(code);
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -97,13 +110,33 @@ public class ConfirmacaoActivity extends SyncActivity {
                     jsonDefault = jsonDefault.getJSONObject("qrcode");
                     if(jsonDefault.has("Id")){
                         code = jsonDefault.getString("Id");
+                    }else {
+                        code = lerEncapsulamento(code);
                     }
+                }else{
+                    code = lerEncapsulamento(code);
                 }
             }catch (Exception ex){
-                ex.printStackTrace();
+                code = lerEncapsulamento(code);
             }
         }
 
+    }
+
+    public String lerEncapsulamento(String code){
+
+        List<String> listId = new ArrayList<String>();
+        Matcher matcher = PATTERN.matcher(code);
+        while (matcher.find()) {
+            listId.add(matcher.group());
+        }
+        return revomeEncapsulamento(listId.get(0));
+    }
+
+    public String revomeEncapsulamento(String code){
+        code = code.substring(4,code.length());
+        code = code.substring(0,code.length()-4);
+        return code;
     }
 
     @Override
