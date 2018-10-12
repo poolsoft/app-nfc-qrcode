@@ -78,7 +78,7 @@ public class ConfirmacaoActivity extends SyncActivity {
     public void preencherTela(){
         DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
         date1 = df.format(Calendar.getInstance().getTime());
-        millius = String.valueOf(df.getCalendar().getTimeInMillis());
+        millius = String.valueOf(df.getCalendar().getTimeInMillis()/1000);
         dateText.setText(date1);
         timestamp.setText(millius);
         separarQRCode();

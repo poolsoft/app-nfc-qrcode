@@ -77,6 +77,6 @@ public class TimestampFragment extends Fragment  {
         String date1 = df.format(Calendar.getInstance().getTime());
 
         dateText.setText(date1);
-        timestamp.setText(String.valueOf(df.getCalendar().getTimeInMillis()));
+        timestamp.setText(String.valueOf(df.getCalendar().getTimeInMillis()/1000));
     }
 }
