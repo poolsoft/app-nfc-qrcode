@@ -223,6 +223,12 @@ public class MainActivity extends SyncActivity
             }
 
             return detalheFragment;
+        }else if( sectionNumer == R.id.nav_nfc){
+            if(nfcFragment == null){
+                nfcFragment = NFCFragment.newInstance();
+            }
+
+            return nfcFragment;
         }
 
         return null;

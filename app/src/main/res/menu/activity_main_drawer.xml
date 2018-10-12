@@ -48,6 +48,10 @@
             <item
                 android:id="@+id/nav_qrc"
                 android:title="@string/menu_qrcode"/>
+
+            <item
+                android:id="@+id/nav_nfc"
+                android:title="@string/menu_nfc"/>
         </menu>
     </item>
 
