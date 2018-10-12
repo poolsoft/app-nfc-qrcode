@@ -99,6 +99,8 @@ public class MainActivity extends SyncActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        verificarPermissoes();
     }
 
     @Override
@@ -152,7 +154,7 @@ public class MainActivity extends SyncActivity
             //Toast.makeText(this, getResources().getString(R.string.cor_sucesso), Toast.LENGTH_SHORT).show();
 
         }catch (NumberFormatException e){
-            Toast.makeText(this, getResources().getString(R.string.cor_erro), Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, getResources().getString(R.string.cor_erro), Toast.LENGTH_SHORT).show();
         }catch (IllegalArgumentException e){
             Toast.makeText(this, getResources().getString(R.string.cor_erro), Toast.LENGTH_SHORT).show();
         }

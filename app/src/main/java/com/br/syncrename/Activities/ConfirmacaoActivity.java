@@ -164,7 +164,13 @@ public class ConfirmacaoActivity extends SyncActivity {
         while (matcher.find()) {
             listId.add(matcher.group());
         }
-        return revomeEncapsulamento(listId.get(0));
+
+        if(listId.size() > 0){
+            return revomeEncapsulamento(listId.get(0));
+        }
+
+        return "Sem ID";
+
     }
 
     public String revomeEncapsulamento(String code){

@@ -88,7 +88,7 @@ public class QRCodeFragment extends Fragment {
             Log.d(LOGTAG,"Have scan result in your app activity :"+ result);
             Intent i = new Intent(getContext(), ConfirmacaoActivity.class);
             i.putExtra(Constantes.ATUAL_TXT, arquivos.get(0).getNome());
-            i.putExtra(Constantes.IS_QRCODE, false);
+            i.putExtra(Constantes.IS_QRCODE, true);
             i.putExtra(Constantes.CODE_CODE, result);
             startActivity(i);
         }

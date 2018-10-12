@@ -31,6 +31,7 @@ public class NFCFragment extends Fragment {
 
     private NfcAdapter nfcAdapter;
     private List<Arquivo> arquivos = new ArrayList<>();
+    final Handler handler = new Handler();
 
     public static NFCFragment newInstance() {
         NFCFragment fragment = new NFCFragment();
@@ -60,13 +61,13 @@ public class NFCFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
                 leituraNFC();
                 handler.postDelayed(this, 1000);
             }
         }, 1000);
+
 
         arquivos = ArquivoTxt.listaArquivos(getResources().getString(R.string.file_name));
         ((MainActivity) getActivity()).modalArquivo(arquivos);
@@ -98,5 +99,15 @@ public class NFCFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
+    }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        handler.removeCallbacksAndMessages(null);
+    }
 }
