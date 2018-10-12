@@ -14,7 +14,7 @@ public class PreferenceHandler {
 
     public static String CORBACKGROUND = "corbackground_";
     public static String CORBOTAO = "corbotao_";
-    public static String CRIARTXT = "criar_txt_";
+    public static String MODOLEITURA = "modo_leitura_";
 
     // Shared Preferences
     public static SharedPreferences mSharedPreferences;
@@ -40,18 +40,17 @@ public class PreferenceHandler {
     }
 
     public static String getBotao(){
-        String a = mSharedPreferences.getString(CORBOTAO,"F5A623");
-        return a;
+        return mSharedPreferences.getString(CORBOTAO,"#F5A623");
     }
 
     public static void saveIdLeitura(int id){
         SharedPreferences.Editor e = mSharedPreferences.edit();
-        e.putInt(CORBOTAO,id);
+        e.putInt(MODOLEITURA,id);
         e.apply();
     }
 
     public static int getIdLeitura(){
-        return mSharedPreferences.getInt(CORBOTAO,Constantes.VALUE_LEITURA);
+        return mSharedPreferences.getInt(MODOLEITURA,Constantes.VALUE_LEITURA);
     }
 
 }

@@ -1,5 +1,7 @@
 package com.br.syncrename.Fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.blikoon.qrcodescanner.QrCodeActivity;
 import com.br.syncrename.Activities.ConfirmacaoActivity;
 import com.br.syncrename.Activities.MainActivity;
 import com.br.syncrename.Models.Arquivo;
@@ -66,6 +69,7 @@ public class NFCFragment extends Fragment {
         }, 1000);
 
         arquivos = ArquivoTxt.listaArquivos(getResources().getString(R.string.file_name));
+        ((MainActivity) getActivity()).modalArquivo(arquivos);
     }
 
     public void leituraNFC(){
@@ -82,12 +86,17 @@ public class NFCFragment extends Fragment {
                 String tagInfo = String.valueOf(tag.getId());
                 Log.i("NFC", tagInfo);
 
-                Intent i = new Intent(getContext(), ConfirmacaoActivity.class);
-                i.putExtra(Constantes.ATUAL_TXT, arquivos.get(0).getNome());
-                i.putExtra(Constantes.IS_QRCODE, false);
-                i.putExtra(Constantes.CODE_CODE, tagInfo);
-                startActivity(i);
+                if(((MainActivity) getActivity()).modalArquivo(arquivos)){
+
+                    Intent i = new Intent(getContext(), ConfirmacaoActivity.class);
+                    i.putExtra(Constantes.ATUAL_TXT, arquivos.get(0).getNome());
+                    i.putExtra(Constantes.IS_QRCODE, false);
+                    i.putExtra(Constantes.CODE_CODE, tagInfo);
+                    startActivity(i);
+                }
             }
         }
     }
+
+
 }

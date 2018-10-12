@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.blikoon.qrcodescanner.QrCodeActivity;
 import com.br.syncrename.Activities.ConfirmacaoActivity;
+import com.br.syncrename.Activities.MainActivity;
 import com.br.syncrename.Models.Arquivo;
 import com.br.syncrename.R;
 import com.br.syncrename.Utils.ArquivoTxt;
@@ -50,17 +51,8 @@ public class QRCodeFragment extends Fragment {
             Intent i = new Intent(getContext(),QrCodeActivity.class);
             startActivityForResult( i,REQUEST_CODE_QR_SCAN);
         }else{
-            AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
-            alertDialog.setMessage(getResources().getString(R.string.not_file));
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-            alertDialog.show();
+            ((MainActivity) getActivity()).modalArquivo(arquivos);
         }
-
     }
 
     @Override

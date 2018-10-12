@@ -49,7 +49,7 @@ public class DetalheFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        button_back.setCardBackgroundColor(Color.parseColor("#"+ PreferenceHandler.getBotao()));
+        button_back.setCardBackgroundColor(Color.parseColor(PreferenceHandler.getBotao()));
         detalheAdapter = new DetalheAdapter(getActivity(), ArquivoTxt.listaTags(nomeArquivo));
 
         Lista.setHasFixedSize(true);

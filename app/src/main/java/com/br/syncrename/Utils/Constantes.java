@@ -7,4 +7,5 @@ public class Constantes {
     public static final String IS_QRCODE = "is_qrcode_";
     public static final int VALUE_LEITURA = -645455;
 
+
 }

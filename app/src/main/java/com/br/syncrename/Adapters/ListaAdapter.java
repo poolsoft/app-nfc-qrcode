@@ -54,7 +54,7 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.ViewHolder> 
         holder.textDate.setText(df.format(Calendar.getInstance().getTime()));
         holder.textNome.setText(arquivo.getNome());
         holder.textTime.setText(data.getHourOfDay()+":"+data.getMinuteOfHour());
-        holder.cardView.setCardBackgroundColor(Color.parseColor("#"+PreferenceHandler.getBotao()));
+        holder.cardView.setCardBackgroundColor(Color.parseColor(PreferenceHandler.getBotao()));
 
         holder.fatherRelative.setOnClickListener(new View.OnClickListener() {
             @Override

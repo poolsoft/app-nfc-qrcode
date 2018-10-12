@@ -48,6 +48,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import org.joda.time.DateTime;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit.Call;
@@ -105,6 +107,8 @@ public class MainActivity extends SyncActivity
         trocarFundoCor(PreferenceHandler.getBackground());
         if(PreferenceHandler.getIdLeitura() != Constantes.VALUE_LEITURA){
             inicializaPrincipal(PreferenceHandler.getIdLeitura());
+        }else{
+            inicializaPrincipal(R.id.nav_nfc);
         }
 
     }
@@ -144,7 +148,7 @@ public class MainActivity extends SyncActivity
     public void trocarFundoCor(String cor){
         try{
             relativeFather.setBackgroundColor(Color.parseColor("#"+cor));
-            PreferenceHandler.saveBackground(cor);
+            PreferenceHandler.saveBackground("#"+cor);
             //Toast.makeText(this, getResources().getString(R.string.cor_sucesso), Toast.LENGTH_SHORT).show();
 
         }catch (NumberFormatException e){
@@ -299,5 +303,21 @@ public class MainActivity extends SyncActivity
 
     public String getNomeDetahles() {
         return nomeDetahles;
+    }
+
+    public boolean modalArquivo(List<Arquivo> arquivos){
+        if(arquivos.size() == 0){
+            android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(this).create();
+            alertDialog.setMessage(getResources().getString(R.string.not_file));
+            alertDialog.setButton(android.app.AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
+            return false;
+        }else
+            return true;
     }
 }

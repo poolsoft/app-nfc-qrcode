@@ -50,7 +50,7 @@ public class BotaoFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        button_back.setCardBackgroundColor(Color.parseColor("#"+PreferenceHandler.getBotao()));
+        button_back.setCardBackgroundColor(Color.parseColor(PreferenceHandler.getBotao()));
         editHexadecimal.getText().clear();
         editHexadecimal.addTextChangedListener(new TextWatcher() {
             @Override
@@ -86,7 +86,7 @@ public class BotaoFragment extends Fragment {
             if(editHexadecimal.getText().toString().length() != 0)
                 viewColor.setCardBackgroundColor(Color.parseColor("#"+editHexadecimal.getText().toString()));
             else
-                viewColor.setCardBackgroundColor(Color.parseColor("#"+PreferenceHandler.getBotao()));
+                viewColor.setCardBackgroundColor(Color.parseColor(PreferenceHandler.getBotao()));
 
         }catch( Exception e ){
             Log.e("COR","Cor não existe");
