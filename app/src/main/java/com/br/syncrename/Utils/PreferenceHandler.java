@@ -3,6 +3,8 @@ package com.br.syncrename.Utils;
 import android.app.Activity;
 import android.content.SharedPreferences;
 
+import com.br.syncrename.R;
+
 /**
  * Created by matheus on 12/16/16.
  */
@@ -38,7 +40,18 @@ public class PreferenceHandler {
     }
 
     public static String getBotao(){
-        return mSharedPreferences.getString(CORBOTAO,"F5A623");
+        String a = mSharedPreferences.getString(CORBOTAO,"F5A623");
+        return a;
+    }
+
+    public static void saveIdLeitura(int id){
+        SharedPreferences.Editor e = mSharedPreferences.edit();
+        e.putInt(CORBOTAO,id);
+        e.apply();
+    }
+
+    public static int getIdLeitura(){
+        return mSharedPreferences.getInt(CORBOTAO,Constantes.VALUE_LEITURA);
     }
 
 }

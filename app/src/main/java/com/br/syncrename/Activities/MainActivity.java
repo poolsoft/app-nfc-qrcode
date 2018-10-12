@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -40,6 +41,7 @@ import com.br.syncrename.Fragments.TimestampFragment;
 import com.br.syncrename.Models.Arquivo;
 import com.br.syncrename.R;
 import com.br.syncrename.Utils.ArquivoTxt;
+import com.br.syncrename.Utils.Constantes;
 import com.br.syncrename.Utils.PreferenceHandler;
 import com.br.syncrename.Utils.ServerHandler;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -73,12 +75,15 @@ public class MainActivity extends SyncActivity
     private EditText nomeArquivo;
     private String nomeDetahles;
     private int DETALHES = 2540;
+    protected IntentFilter mIntentFilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        PreferenceHandler.init(this);
+        mIntentFilter = new IntentFilter("android.nfc.action.TAG_DISCOVERED");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -98,7 +103,10 @@ public class MainActivity extends SyncActivity
     protected void onResume() {
         super.onResume();
         trocarFundoCor(PreferenceHandler.getBackground());
-        inicializaPrincipal(R.id.nav_qrc);
+        if(PreferenceHandler.getIdLeitura() != Constantes.VALUE_LEITURA){
+            inicializaPrincipal(PreferenceHandler.getIdLeitura());
+        }
+
     }
 
     @Override
@@ -107,7 +115,7 @@ public class MainActivity extends SyncActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            inicializaPrincipal(R.id.nav_qrc);
+            inicializaPrincipal(PreferenceHandler.getIdLeitura());
         }
     }
 
@@ -214,6 +222,7 @@ public class MainActivity extends SyncActivity
         } else if( sectionNumer == R.id.nav_qrc){
             if(qrCodeFragment == null){
                 qrCodeFragment = QRCodeFragment.newInstance();
+                PreferenceHandler.saveIdLeitura(R.id.nav_qrc);
             }
 
             return qrCodeFragment;
@@ -226,6 +235,7 @@ public class MainActivity extends SyncActivity
         }else if( sectionNumer == R.id.nav_nfc){
             if(nfcFragment == null){
                 nfcFragment = NFCFragment.newInstance();
+                PreferenceHandler.saveIdLeitura(R.id.nav_nfc);
             }
 
             return nfcFragment;

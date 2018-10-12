@@ -81,13 +81,19 @@ public class ConfirmacaoActivity extends SyncActivity {
         millius = String.valueOf(df.getCalendar().getTimeInMillis()/1000);
         dateText.setText(date1);
         timestamp.setText(millius);
-        separarQRCode();
+
+        if(getIntent().getBooleanExtra(Constantes.IS_QRCODE,false)){
+            separarQRCode();
+        }else{
+            separarNFC();
+        }
+
         arquivoAtual = getIntent().getStringExtra(Constantes.ATUAL_TXT);
         userCode.setText(code);
     }
 
     public void separarQRCode(){
-        code = getIntent().getStringExtra(Constantes.CODE_QRCODE);
+        code = getIntent().getStringExtra(Constantes.CODE_CODE);
 
         try {
             JSONObject jsonDefault = new JSONObject(code);
@@ -120,7 +126,35 @@ public class ConfirmacaoActivity extends SyncActivity {
                 code = lerEncapsulamento(code);
             }
         }
+    }
 
+    public void separarNFC(){
+        code = getIntent().getStringExtra(Constantes.CODE_CODE);
+    }
+
+    @Override
+    public void onBackPressed() {
+        voltarMain();
+    }
+
+    @OnClick(R.id.button_nao) void voltarMain(){
+        Intent i = new Intent(this,MainActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        i.setAction("android.nfc.action.TAG_DISCOVERED");
+        finish();
+        startActivity(i);
+    }
+
+    @OnClick(R.id.button_sim) void confirmaTag(){
+        try {
+            String novoTag = ServerHandler.getJsonConverter().writeValueAsString(code+";"+millius);
+            ArquivoTxt.gravarArquivo(this, novoTag, arquivoAtual);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        voltarMain();
     }
 
     public String lerEncapsulamento(String code){
@@ -138,33 +172,4 @@ public class ConfirmacaoActivity extends SyncActivity {
         code = code.substring(0,code.length()-4);
         return code;
     }
-
-    @Override
-    public void onBackPressed() {
-        voltarMain();
-    }
-
-    @OnClick(R.id.button_nao) void voltarMain(){
-        Intent i = new Intent(this,MainActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        finish();
-        startActivity(i);
-    }
-
-    @OnClick(R.id.button_sim) void confirmaTag(){
-//        Tags tags = new Tags();
-//        tags.setCode(code);
-//        tags.setTimeStamp(millius);
-        try {
-            String novoTag = ServerHandler.getJsonConverter().writeValueAsString(code+";"+millius);
-            ArquivoTxt.gravarArquivo(this, novoTag, arquivoAtual);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-
-        voltarMain();
-    }
-
-
 }

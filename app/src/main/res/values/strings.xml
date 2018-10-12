@@ -40,5 +40,6 @@
     <string name="qrc_erro">Erro Qr Code</string>
     <string name="qrc_erro_msg">Não foi possível ler o Qr code</string>
     <string name="not_file">Crie um arquivo primeiro</string>
+    <string name="title_activity_splash">SplashActivity</string>
 
 </resources>

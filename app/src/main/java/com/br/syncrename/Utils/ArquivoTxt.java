@@ -67,7 +67,7 @@ public class ArquivoTxt {
         String [] todosArquivos = lerArquivoArray(nome);
         List<Arquivo> result = new ArrayList<>();
 
-        if(todosArquivos.length > 0){
+        if(todosArquivos !=null && todosArquivos.length > 0){
             for (String arquivo: todosArquivos) {
                 try {
                     result.add(ServerHandler.getJsonConverter().readValue(arquivo, Arquivo.class));
