@@ -155,13 +155,8 @@ public class ConfirmacaoActivity extends SyncActivity {
     }
 
     @OnClick(R.id.button_sim) void confirmaTag(){
-        try {
-            String novoTag = ServerHandler.getJsonConverter().writeValueAsString(code+";"+millius);
+            String novoTag = code+";"+millius;
             ArquivoTxt.gravarArquivo(this, novoTag, arquivoAtual);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-
         voltarMain();
     }
 
