@@ -15,6 +15,7 @@ public class PreferenceHandler {
     public static String CORBACKGROUND = "corbackground_";
     public static String CORBOTAO = "corbotao_";
     public static String MODOLEITURA = "modo_leitura_";
+    public static String FUNDOCOR = "fundo_cor_";
 
     // Shared Preferences
     public static SharedPreferences mSharedPreferences;
@@ -51,6 +52,16 @@ public class PreferenceHandler {
 
     public static int getIdLeitura(){
         return mSharedPreferences.getInt(MODOLEITURA,Constantes.VALUE_LEITURA);
+    }
+
+    public static void saveFundoCor(boolean fundo){
+        SharedPreferences.Editor e = mSharedPreferences.edit();
+        e.putBoolean(FUNDOCOR,fundo);
+        e.apply();
+    }
+
+    public static boolean getFundoCor(){
+        return mSharedPreferences.getBoolean(FUNDOCOR,true);
     }
 
 }

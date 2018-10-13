@@ -73,6 +73,9 @@ dependencies {
     //Qr-code
     implementation 'com.github.blikoon:QRCodeScanner:0.1.2'
 
+    //Crop
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.+'
+
     //test
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

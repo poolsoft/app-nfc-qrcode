@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,6 +13,7 @@ import com.br.syncrename.Models.Tags;
 import com.br.syncrename.R;
 import com.br.syncrename.Utils.ArquivoTxt;
 import com.br.syncrename.Utils.Constantes;
+import com.br.syncrename.Utils.ImageUtil;
 import com.br.syncrename.Utils.PreferenceHandler;
 import com.br.syncrename.Utils.ServerHandler;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -42,6 +44,8 @@ public class ConfirmacaoActivity extends SyncActivity {
     RelativeLayout relativeFather;
     @BindView(R.id.text_data)
     TextView dateText;
+    @BindView(R.id.background_img)
+    ImageView backgroundImg;
 
     private String arquivoAtual;
     private String date1;
@@ -72,6 +76,10 @@ public class ConfirmacaoActivity extends SyncActivity {
             Toast.makeText(this, getResources().getString(R.string.cor_erro), Toast.LENGTH_SHORT).show();
         }catch (IllegalArgumentException e){
             Toast.makeText(this, getResources().getString(R.string.cor_erro), Toast.LENGTH_SHORT).show();
+        }
+
+        if(!PreferenceHandler.getFundoCor()){
+            backgroundImg.setImageBitmap(ImageUtil.loadImageFromStorage(this,"background.jpg"));
         }
     }
 

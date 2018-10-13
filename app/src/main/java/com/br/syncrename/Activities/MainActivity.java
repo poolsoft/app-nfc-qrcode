@@ -5,8 +5,11 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +17,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
+import android.util.Base64;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -27,6 +31,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -42,12 +47,18 @@ import com.br.syncrename.Models.Arquivo;
 import com.br.syncrename.R;
 import com.br.syncrename.Utils.ArquivoTxt;
 import com.br.syncrename.Utils.Constantes;
+import com.br.syncrename.Utils.ImageUtil;
 import com.br.syncrename.Utils.PreferenceHandler;
 import com.br.syncrename.Utils.ServerHandler;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 import org.joda.time.DateTime;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import butterknife.BindView;
@@ -61,6 +72,8 @@ public class MainActivity extends SyncActivity
 
     @BindView(R.id.father_relative)
     RelativeLayout relativeFather;
+    @BindView(R.id.background_img)
+    ImageView backgroundImg;
 
 
     private int sectionNumer = 0;
@@ -78,6 +91,9 @@ public class MainActivity extends SyncActivity
     private String nomeDetahles;
     private int DETALHES = 2540;
     protected IntentFilter mIntentFilter;
+    private String image64 = "";
+    private Uri picUri;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +127,13 @@ public class MainActivity extends SyncActivity
             inicializaPrincipal(PreferenceHandler.getIdLeitura());
         }else{
             inicializaPrincipal(R.id.nav_nfc);
+        }
+
+        if(!PreferenceHandler.getFundoCor()){
+            backgroundImg.setImageBitmap(ImageUtil.loadImageFromStorage(this,"background.jpg"));
+            backgroundImg.setVisibility(View.VISIBLE);
+        }else{
+            backgroundImg.setVisibility(View.GONE);
         }
 
     }
@@ -151,6 +174,8 @@ public class MainActivity extends SyncActivity
         try{
             relativeFather.setBackgroundColor(Color.parseColor("#"+cor));
             PreferenceHandler.saveBackground("#"+cor);
+            PreferenceHandler.saveFundoCor(true);
+            backgroundImg.setVisibility(View.GONE);
             //Toast.makeText(this, getResources().getString(R.string.cor_sucesso), Toast.LENGTH_SHORT).show();
 
         }catch (NumberFormatException e){
@@ -321,5 +346,50 @@ public class MainActivity extends SyncActivity
             return false;
         }else
             return true;
+    }
+
+
+    public void backgroudPick(){
+        CropImage.activity(picUri)
+                .setGuidelines(CropImageView.Guidelines.ON)
+                .setActivityTitle("Crop")
+                .setScaleType(CropImageView.ScaleType.FIT_CENTER)
+                .setCropShape(CropImageView.CropShape.RECTANGLE)
+                .setAspectRatio(9, 16)
+                .setAutoZoomEnabled(true)
+                .start(this);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode){
+            case CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE:
+                CropImage.ActivityResult result = CropImage.getActivityResult(data);
+                if (resultCode == RESULT_OK) {
+                    Bitmap background = null;
+                    try {
+                        background = ImageUtil.decodeUri(this, result.getUri());
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    base64(new File(ImageUtil.saveToInternalSorage(this,background,"background.jpg")));
+                    backgroundImg.setImageBitmap(background);
+                    PreferenceHandler.saveFundoCor(false);
+                    backgroundImg.setVisibility(View.VISIBLE);
+
+                } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {}
+                break;
+        }
+    }
+
+    private void base64(File file) {
+        Bitmap bm = BitmapFactory.decodeFile(file.getAbsolutePath());
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bm.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] b = baos.toByteArray();
+        String encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
+//        image64 = "data:image/png;base64," + encodedImage;
     }
 }

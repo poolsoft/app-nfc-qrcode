@@ -32,6 +32,13 @@
         <item name="android:logo">@android:color/transparent</item>
     </style>
 
+    <style name="AppTheme.Base.ActionBar.crop" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- customize the color palette -->
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/white</item>
+    </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

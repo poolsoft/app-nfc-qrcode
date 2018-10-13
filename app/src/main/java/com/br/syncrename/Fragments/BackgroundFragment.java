@@ -1,11 +1,16 @@
 package com.br.syncrename.Fragments;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,11 +21,20 @@ import android.widget.LinearLayout;
 
 import com.br.syncrename.Activities.MainActivity;
 import com.br.syncrename.R;
+import com.br.syncrename.Utils.ImageUtil;
 import com.br.syncrename.Utils.PreferenceHandler;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static android.app.Activity.RESULT_OK;
 
 public class BackgroundFragment extends Fragment {
 
@@ -30,6 +44,7 @@ public class BackgroundFragment extends Fragment {
     CardView viewColor;
     @BindView(R.id.button_back)
     CardView button_back;
+
 
     public static BackgroundFragment newInstance() {
         BackgroundFragment fragment = new BackgroundFragment();
@@ -62,8 +77,13 @@ public class BackgroundFragment extends Fragment {
 
     }
 
+    @OnClick(R.id.edit_arquivo) void arquivo(){
+        ((MainActivity) getActivity()).backgroudPick();
+    }
+    @OnClick(R.id.button_arquivo) void buttonArquivo(){arquivo();};
+
     @OnClick(R.id.button_hexadecimal) void trocarCor(){
-        button_back.setBackgroundColor(Color.parseColor(PreferenceHandler.getBotao()));
+        button_back.setCardBackgroundColor(Color.parseColor(PreferenceHandler.getBotao()));
         String cor = editHexadecimal.getText().toString();
         ((MainActivity) getActivity()).trocarFundoCor(cor);
         ((MainActivity) getContext()).hideKeyboard();
@@ -84,4 +104,6 @@ public class BackgroundFragment extends Fragment {
     @OnClick(R.id.button_back) void backPressed(){
         ((MainActivity) getActivity()).onBackPressed();
     }
+
+
 }

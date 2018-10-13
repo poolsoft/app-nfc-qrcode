@@ -69,7 +69,7 @@ public class BotaoFragment extends Fragment {
         ((MainActivity) getContext()).hideKeyboard();
         String cor = editHexadecimal.getText().toString();
         try{
-            button_back.setBackgroundColor(Color.parseColor("#"+cor));
+            button_back.setCardBackgroundColor(Color.parseColor("#"+cor));
             PreferenceHandler.saveBotao(cor);
             //Toast.makeText(getContext(), getResources().getString(R.string.cor_sucesso), Toast.LENGTH_SHORT).show();
 
