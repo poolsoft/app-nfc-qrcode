@@ -99,6 +99,7 @@ public class MainActivity extends SyncActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         ButterKnife.bind(this);
         PreferenceHandler.init(this);
         mIntentFilter = new IntentFilter("android.nfc.action.TAG_DISCOVERED");
