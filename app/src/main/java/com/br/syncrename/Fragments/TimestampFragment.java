@@ -52,7 +52,7 @@ public class TimestampFragment extends Fragment  {
     @Override
     public void onResume() {
         super.onResume();
-        button_back.setCardBackgroundColor(Color.parseColor(PreferenceHandler.getBotao()));
+        button_back.setCardBackgroundColor(Color.parseColor("#" + PreferenceHandler.getBotao()));
 
         threadTime();
     }

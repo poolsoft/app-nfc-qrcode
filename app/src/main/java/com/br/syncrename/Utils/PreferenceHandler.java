@@ -41,7 +41,7 @@ public class PreferenceHandler {
     }
 
     public static String getBotao(){
-        return mSharedPreferences.getString(CORBOTAO,"#F5A623");
+        return mSharedPreferences.getString(CORBOTAO,"F5A623");
     }
 
     public static void saveIdLeitura(int id){

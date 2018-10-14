@@ -51,7 +51,7 @@ public class ListaFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        button_back.setCardBackgroundColor(Color.parseColor(PreferenceHandler.getBotao()));
+        button_back.setCardBackgroundColor(Color.parseColor("#" + PreferenceHandler.getBotao()));
         listaAdapter = new ListaAdapter(getActivity(), ArquivoTxt.listaArquivos(getResources().getString(R.string.file_name)));
 
         Lista.setHasFixedSize(true);
