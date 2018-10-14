@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -59,6 +60,10 @@ public class ConfirmacaoActivity extends SyncActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmacao);
+        getSupportActionBar().hide();
+//        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+//        getActionBar().hide();
+
         ButterKnife.bind(this);
     }
 
@@ -73,9 +78,9 @@ public class ConfirmacaoActivity extends SyncActivity {
         try{
             relativeFather.setBackgroundColor(Color.parseColor("#"+cor));
         }catch (NumberFormatException e){
-            Toast.makeText(this, getResources().getString(R.string.cor_erro), Toast.LENGTH_SHORT).show();
+            Log.e("COR_ERRO", getResources().getString(R.string.cor_erro));
         }catch (IllegalArgumentException e){
-            Toast.makeText(this, getResources().getString(R.string.cor_erro), Toast.LENGTH_SHORT).show();
+            Log.e("COR_ERRO", getResources().getString(R.string.cor_erro));
         }
 
         if(!PreferenceHandler.getFundoCor()){
