@@ -32,6 +32,7 @@ public class NFCFragment extends Fragment {
     private NfcAdapter nfcAdapter;
     private List<Arquivo> arquivos = new ArrayList<>();
     final Handler handler = new Handler();
+    Runnable runnable = null;
 
     public static NFCFragment newInstance() {
         NFCFragment fragment = new NFCFragment();
@@ -43,25 +44,15 @@ public class NFCFragment extends Fragment {
         ButterKnife.bind(this, view);
 
 
-        nfcAdapter = NfcAdapter.getDefaultAdapter(getContext());
-        if(nfcAdapter == null){
-            Toast.makeText(getContext(),
-                    "Aparelho não tem suporte a NFC",
-                    Toast.LENGTH_LONG).show();
-        }else if(!nfcAdapter.isEnabled()){
-            Toast.makeText(getContext(),
-                    "NFC Desligado",
-                    Toast.LENGTH_LONG).show();
-        }
-
         return view;
     }
+
 
     @Override
     public void onResume() {
         super.onResume();
 
-        handler.postDelayed(new Runnable() {
+        handler.postDelayed(runnable = new Runnable() {
             public void run() {
                 leituraNFC();
                 handler.postDelayed(this, 1000);
@@ -77,14 +68,14 @@ public class NFCFragment extends Fragment {
         Intent intent = ((MainActivity) getActivity()).getIntent();
         String action = intent.getAction();
 
-        if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)) {
+        if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(action)) {
 
             Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
             if(tag == null){
 //                Toast.makeText(getActivity(), "Tag está em branco",Toast.LENGTH_SHORT).show();
             }else{
 
-                String tagInfo = String.valueOf(tag.getId());
+                String tagInfo = String.valueOf(tag.toString());
                 Log.i("NFC", tagInfo);
 
                 if(((MainActivity) getActivity()).modalArquivo(arquivos)){
@@ -102,12 +93,20 @@ public class NFCFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        handler.removeCallbacksAndMessages(null);
+        handler.removeCallbacks(runnable);
+
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        handler.removeCallbacksAndMessages(null);
+        handler.removeCallbacks(runnable);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        handler.removeCallbacks(runnable);
+
     }
 }

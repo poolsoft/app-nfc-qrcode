@@ -10,14 +10,19 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.nfc.NdefMessage;
+import android.nfc.NfcAdapter;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -93,6 +98,7 @@ public class MainActivity extends SyncActivity
     protected IntentFilter mIntentFilter;
     private String image64 = "";
     private Uri picUri;
+    private NfcAdapter nfcAdapter;
 
 
     @Override
@@ -102,7 +108,7 @@ public class MainActivity extends SyncActivity
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         ButterKnife.bind(this);
         PreferenceHandler.init(this);
-        mIntentFilter = new IntentFilter("android.nfc.action.TAG_DISCOVERED");
+        mIntentFilter = new IntentFilter("android.nfc.action.NDEF_DISCOVERED");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -118,6 +124,14 @@ public class MainActivity extends SyncActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         verificarPermissoes();
+        leituraNFC(getIntent());
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        leituraNFC(intent);
     }
 
     @Override
@@ -332,23 +346,6 @@ public class MainActivity extends SyncActivity
     public String getNomeDetahles() {
         return nomeDetahles;
     }
-
-    public boolean modalArquivo(List<Arquivo> arquivos){
-        if(arquivos.size() == 0){
-            android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(this).create();
-            alertDialog.setMessage(getResources().getString(R.string.not_file));
-            alertDialog.setButton(android.app.AlertDialog.BUTTON_NEUTRAL, "OK",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-            alertDialog.show();
-            return false;
-        }else
-            return true;
-    }
-
 
     public void backgroudPick(){
         CropImage.activity(picUri)

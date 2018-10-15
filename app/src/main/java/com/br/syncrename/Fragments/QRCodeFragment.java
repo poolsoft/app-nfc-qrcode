@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +23,7 @@ import com.br.syncrename.Utils.Constantes;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -43,6 +46,7 @@ public class QRCodeFragment extends Fragment {
         return view;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @OnClick(R.id.img_qrc) void lerQrCode(){
 
         arquivos = ArquivoTxt.listaArquivos(getResources().getString(R.string.file_name));
@@ -51,7 +55,7 @@ public class QRCodeFragment extends Fragment {
             Intent i = new Intent(getContext(),QrCodeActivity.class);
             startActivityForResult( i,REQUEST_CODE_QR_SCAN);
         }else{
-            ((MainActivity) getActivity()).modalArquivo(arquivos);
+            ((MainActivity) Objects.requireNonNull(getActivity())).modalArquivo(arquivos);
         }
     }
 
